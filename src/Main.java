@@ -1,5 +1,6 @@
 import db.DatabaseConnection;
 import db.PostgreSQLJDBC;
+import db.table.DbTable;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,14 +15,8 @@ public class Main {
         s = scanner.nextLine();
         if (s.startsWith("select")) {
             try {
-                ResultSet rs = databaseConnection.makeSelect(s);
-                if (rs != null) {
-                    while (rs.next()) {
-                        System.out.println("Num = " + rs.getInt("num") +
-                                " Name = " + rs.getString("name") +
-                                " Lebensalter = " + rs.getInt("lebensalter"));
-                    }
-                }
+                DbTable result = databaseConnection.makeSelect(s);
+                System.out.println(result.toString());
             } catch (SQLException e) {
                 e.printStackTrace();
             }
