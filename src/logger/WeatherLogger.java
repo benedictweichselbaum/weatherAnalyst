@@ -17,8 +17,8 @@ public final class WeatherLogger implements FileConsoleLogger{
         try {
             this.fileWriter = new FileWriter("./log.txt");
         } catch (IOException e) {
-            System.out.println("Logger create failed!");
-            e.printStackTrace();
+            this.error("Logger create failed!");
+            this.error(e.getMessage());
         }
     }
 
@@ -29,7 +29,7 @@ public final class WeatherLogger implements FileConsoleLogger{
         try {
             fileWriter.write(msg);
         } catch (IOException e) {
-            e.printStackTrace();
+            this.error(e.getMessage());
         }
     }
 
@@ -40,7 +40,7 @@ public final class WeatherLogger implements FileConsoleLogger{
         try {
             fileWriter.write(msg);
         } catch (IOException e) {
-            e.printStackTrace();
+            this.error(e.getMessage());
         }
     }
 
@@ -51,7 +51,7 @@ public final class WeatherLogger implements FileConsoleLogger{
         try {
             fileWriter.write(msg);
         } catch (IOException e) {
-            e.printStackTrace();
+            this.error(e.getMessage());
         }
     }
 

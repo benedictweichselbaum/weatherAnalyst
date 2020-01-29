@@ -11,63 +11,40 @@ import java.util.List;
 
 public class PostgreSQLJDBC implements DatabaseConnection {
 
-    private final static FileConsoleLogger logger = WeatherLogger.createWeatherLogger();
-
-    public PostgreSQLJDBC () {
-    }
+    private static final FileConsoleLogger LOGGER = WeatherLogger.createWeatherLogger();
 
     @Override
-    public void makeUpdate(String sqlStatement, boolean withCommit) throws SQLException {
+    public void makeUpdate(String sqlStatement, boolean withCommit) {
         List<String> sqlStmt = Collections.singletonList(sqlStatement);
         this.makeMultiUpdates(sqlStmt, withCommit);
     }
 
     @Override
-    public void makeMultiUpdates(List<String> sqlStatements, boolean withCommit) throws SQLException {
-        Connection connection = null;
-        Statement statement = null;
-        try {
-            Class.forName("org.postgresql.Driver");
-            connection  = DriverManager.getConnection("jdbc:postgresql://192.168.178.37:5432/postgres",
-                    "pi", "giraffe");
-            statement = connection.createStatement();
+    public void makeMultiUpdates(List<String> sqlStatements, boolean withCommit) {
+        try (Connection connection = this.getDbConnection();
+             Statement statement = connection.createStatement()) {
             for (String sqlStatement : sqlStatements) {
                 statement.executeUpdate(sqlStatement);
-                logger.info("Executed update: " + sqlStatement);
+                LOGGER.info("Executed update: " + sqlStatement);
             }
             if (withCommit) {
                 connection.commit();
             }
-        } catch (ClassNotFoundException | SQLException e) {
-            logger.error(e.getMessage());
-        } finally {
-            if (statement != null) statement.close();
-            if (statement != null) connection.close();
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage());
         }
     }
 
     @Override
-    public DbTable makeSelect(String sqlStatement) throws SQLException {
-        Statement statement = null;
-        Connection connection = null;
-        try {
-            Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection("jdbc:postgresql://192.168.178.37:5432/postgres",
-                    "pi", "giraffe");
-            statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sqlStatement);
-            logger.info("Executed query: " + sqlStatement);
+    public DbTable makeSelect(String sqlStatement) {
+        try (Connection connection = this.getDbConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sqlStatement)) {
+            LOGGER.info("Executed query: " + sqlStatement);
             return convertResultSetToDbTable(resultSet);
-        } catch (SQLException | ClassNotFoundException e) {
-            logger.error(e.getMessage());
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage());
             return null;
-        } finally {
-            if (statement != null) {
-                statement.close();
-            }
-            if (connection != null) {
-                connection.close();
-            }
         }
     }
 
@@ -89,5 +66,10 @@ public class PostgreSQLJDBC implements DatabaseConnection {
         } else {
             return null;
         }
+    }
+
+    private Connection getDbConnection () throws SQLException {
+        return DriverManager.getConnection(DbConnectionConstants.DB_CONNECTION_URL, DbConnectionConstants.DB_USERNAME,
+                        DbConnectionConstants.DB_PASSWORD);
     }
 }

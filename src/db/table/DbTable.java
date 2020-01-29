@@ -16,7 +16,7 @@ public class DbTable {
         columns.add(column);
     }
 
-    public void addTuples (List<String> valList) throws DbTableException{
+    public void addTuples (List<String> valList) {
         if (valList.size() == columns.size()) {
             tuples.add(valList);
         } else {
