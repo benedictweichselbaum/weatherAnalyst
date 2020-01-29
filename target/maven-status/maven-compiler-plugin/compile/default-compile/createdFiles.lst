@@ -1,0 +1,11 @@
+logger/FileConsoleLogger.class
+db/DbConnectionConstants.class
+db/table/DbTableException.class
+db/table/DbTableConstants.class
+db/table/DbTable.class
+db/PostgreSQLJDBC.class
+http/consts/HttpConnectionConstants.class
+mainApp/Main.class
+http/getOpenWeather/OpenWeatherDataGetter.class
+logger/WeatherLogger.class
+db/DatabaseConnection.class

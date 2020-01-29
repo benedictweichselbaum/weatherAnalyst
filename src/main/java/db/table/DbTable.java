@@ -1,4 +1,4 @@
-package main.java.db.table;
+package db.table;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,3 +56,4 @@ public class DbTable {
         return builder.toString();
     }
 }
+

@@ -1,8 +1,8 @@
-package main.java.db;
+package db;
 
-import main.java.db.table.DbTable;
-import main.java.logger.FileConsoleLogger;
-import main.java.logger.WeatherLogger;
+import db.table.DbTable;
+import logger.FileConsoleLogger;
+import logger.WeatherLogger;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -38,8 +38,8 @@ public class PostgreSQLJDBC implements DatabaseConnection {
     @Override
     public DbTable makeSelect(String sqlStatement) {
         try (Connection connection = this.getDbConnection();
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sqlStatement)) {
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(sqlStatement)) {
             LOGGER.info("Executed query: " + sqlStatement);
             return convertResultSetToDbTable(resultSet);
         } catch (SQLException e) {
@@ -70,6 +70,6 @@ public class PostgreSQLJDBC implements DatabaseConnection {
 
     private Connection getDbConnection () throws SQLException {
         return DriverManager.getConnection(DbConnectionConstants.DB_CONNECTION_URL, DbConnectionConstants.DB_USERNAME,
-                        DbConnectionConstants.DB_PASSWORD);
+                DbConnectionConstants.DB_PASSWORD);
     }
 }

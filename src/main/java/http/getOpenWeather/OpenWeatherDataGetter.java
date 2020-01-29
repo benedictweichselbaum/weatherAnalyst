@@ -1,8 +1,8 @@
-package main.java.http.getOpenWeather;
+package http.getOpenWeather;
 
-import main.java.http.consts.HttpConnectionConstants;
-import main.java.logger.FileConsoleLogger;
-import main.java.logger.WeatherLogger;
+import http.consts.HttpConnectionConstants;
+import logger.FileConsoleLogger;
+import logger.WeatherLogger;
 
 import java.io.BufferedReader;
 import java.io.IOException;

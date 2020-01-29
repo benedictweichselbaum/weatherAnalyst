@@ -1,6 +1,6 @@
-package main.java;
+package mainApp;
 
-import main.java.http.getOpenWeather.OpenWeatherDataGetter;
+import http.getOpenWeather.OpenWeatherDataGetter;
 
 public class Main {
 

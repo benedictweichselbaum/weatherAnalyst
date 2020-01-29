@@ -1,4 +1,4 @@
-package main.java.logger;
+package logger;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public final class WeatherLogger implements FileConsoleLogger{
+public final class WeatherLogger implements FileConsoleLogger {
 
     private static final String FILE_NAME = "weatherApplicationLog_";
     private static final String FILE_FORMAT_ENDING = ".txt";

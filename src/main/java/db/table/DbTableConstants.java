@@ -1,4 +1,4 @@
-package main.java.db.table;
+package db.table;
 
 public final class DbTableConstants {
 
