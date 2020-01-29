@@ -1,8 +1,8 @@
-package db;
+package main.java.db;
 
-import db.table.DbTable;
-import logger.FileConsoleLogger;
-import logger.WeatherLogger;
+import main.java.db.table.DbTable;
+import main.java.logger.FileConsoleLogger;
+import main.java.logger.WeatherLogger;
 
 import java.sql.*;
 import java.util.ArrayList;

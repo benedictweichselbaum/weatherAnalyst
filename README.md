@@ -7,7 +7,7 @@ all data gets stored in a Postgresql database in order to make long term analysi
 ## TO-DOs
 - [ ] Capture Data (RSS?)
 - [ ] Define DB Scheme
-- [ ] Make DB connection
+- [X] Make DB connection
 - [ ] Analyse Data (Create Data objects)
 - [ ] Generate HTML output
 - [ ] Implement long term analysis

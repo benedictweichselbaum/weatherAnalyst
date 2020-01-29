@@ -1,4 +1,4 @@
-package db.table;
+package main.java.db.table;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,8 +42,9 @@ public class DbTable {
             builder.append("\n");
             builder.append(tupleCounter).append(DbTableConstants.SPACE);
             for (String value : tuple) {
-                builder.append(value);
-                int missingSpaces = DbTableConstants.COLUMN_PRINT_SIZE - value.length();
+                String printValue = (value.length() > 14) ? value.substring(0, 13) : value;
+                builder.append(printValue);
+                int missingSpaces = DbTableConstants.COLUMN_PRINT_SIZE - printValue.length();
                 if (missingSpaces > 0) {
                     builder.append(DbTableConstants.SPACE.repeat(Math.max(0, missingSpaces)));
                 } else {

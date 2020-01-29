@@ -1,6 +1,6 @@
-package db;
+package main.java.db;
 
-import db.table.DbTable;
+import main.java.db.table.DbTable;
 import java.util.List;
 
 public interface DatabaseConnection {

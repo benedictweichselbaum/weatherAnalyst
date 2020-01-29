@@ -1,0 +1,12 @@
+/home/bweichselbaum/Dokumente/InformatikJavaProgrammieren/weatherAnalyst/src/main/java/logger/FileConsoleLogger.java
+/home/bweichselbaum/Dokumente/InformatikJavaProgrammieren/weatherAnalyst/src/main/java/db/table/DbTable.java
+/home/bweichselbaum/Dokumente/InformatikJavaProgrammieren/weatherAnalyst/src/main/java/db/table/DbTableException.java
+/home/bweichselbaum/Dokumente/InformatikJavaProgrammieren/weatherAnalyst/src/main/java/db/DbConnectionConstants.java
+/home/bweichselbaum/Dokumente/InformatikJavaProgrammieren/weatherAnalyst/src/main/java/logger/WeatherLogger.java
+/home/bweichselbaum/Dokumente/InformatikJavaProgrammieren/weatherAnalyst/src/main/java/db/DatabaseConnection.java
+/home/bweichselbaum/Dokumente/InformatikJavaProgrammieren/weatherAnalyst/src/main/java/weatherData/dataObject/CurrentWeather.java
+/home/bweichselbaum/Dokumente/InformatikJavaProgrammieren/weatherAnalyst/src/main/java/http/getOpenWeather/OpenWeatherDataGetter.java
+/home/bweichselbaum/Dokumente/InformatikJavaProgrammieren/weatherAnalyst/src/main/java/http/consts/HttpConnectionConstants.java
+/home/bweichselbaum/Dokumente/InformatikJavaProgrammieren/weatherAnalyst/src/main/java/db/PostgreSQLJDBC.java
+/home/bweichselbaum/Dokumente/InformatikJavaProgrammieren/weatherAnalyst/src/main/java/db/table/DbTableConstants.java
+/home/bweichselbaum/Dokumente/InformatikJavaProgrammieren/weatherAnalyst/src/main/java/Main.java

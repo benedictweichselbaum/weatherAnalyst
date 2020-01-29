@@ -1,4 +1,4 @@
-package logger;
+package main.java.logger;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,13 +9,17 @@ import java.util.logging.Logger;
 
 public final class WeatherLogger implements FileConsoleLogger{
 
+    private static final String FILE_NAME = "weatherApplicationLog_";
+    private static final String FILE_FORMAT_ENDING = ".txt";
+
     private Logger logger;
     private FileWriter fileWriter;
 
     public WeatherLogger () {
         this.logger = Logger.getLogger("weatherLogger");
         try {
-            this.fileWriter = new FileWriter("./log.txt");
+            String fileName = FILE_NAME + getCurrentDate() + FILE_FORMAT_ENDING;
+            this.fileWriter = new FileWriter(fileName);
         } catch (IOException e) {
             this.error("Logger create failed!");
             this.error(e.getMessage());
@@ -26,39 +30,36 @@ public final class WeatherLogger implements FileConsoleLogger{
     public void info(String message) {
         String msg = getCurrentDate() + " " + message;
         logger.log(Level.INFO, msg);
-        try {
-            fileWriter.write(msg);
-        } catch (IOException e) {
-            this.error(e.getMessage());
-        }
+        writeIntoFile(msg);
     }
 
     @Override
     public void warn(String message) {
         String msg = getCurrentDate() + " " + message;
         logger.log(Level.WARNING, msg);
-        try {
-            fileWriter.write(msg);
-        } catch (IOException e) {
-            this.error(e.getMessage());
-        }
+        writeIntoFile(msg);
     }
 
     @Override
     public void error(String error) {
         String msg = getCurrentDate() + " " + error;
         logger.log(Level.SEVERE, msg);
-        try {
-            fileWriter.write(msg);
-        } catch (IOException e) {
-            this.error(e.getMessage());
-        }
+        writeIntoFile(msg);
     }
 
     private String getCurrentDate () {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime today = LocalDateTime.now();
         return formatter.format(today);
+    }
+
+    private void writeIntoFile (String msg) {
+        try {
+            fileWriter.write(msg);
+            fileWriter.flush();
+        } catch (IOException e) {
+            this.error(e.getMessage());
+        }
     }
 
     public static WeatherLogger createWeatherLogger () {

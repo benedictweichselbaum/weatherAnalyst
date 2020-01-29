@@ -1,16 +1,14 @@
-package main;
+package main.java;
 
-import db.DatabaseConnection;
-import db.PostgreSQLJDBC;
-import db.table.DbTable;
-
-import java.sql.SQLException;
-import java.util.Scanner;
+import main.java.http.getOpenWeather.OpenWeatherDataGetter;
 
 public class Main {
 
-    public static void main (String... args) throws SQLException {
-        DatabaseConnection databaseConnection = new PostgreSQLJDBC();
+    public static void main (String... args) {
+
+        System.out.println(OpenWeatherDataGetter.getResponseString());
+
+        /*DatabaseConnection databaseConnection = new PostgreSQLJDBC();
         String s;
         Scanner scanner = new Scanner(System.in);
         s = scanner.nextLine();
@@ -19,6 +17,6 @@ public class Main {
             System.out.println(result.toString());
         } else {
             databaseConnection.makeUpdate(s, false);
-        }
+        }*/
     }
 }
