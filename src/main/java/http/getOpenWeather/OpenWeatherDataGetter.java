@@ -1,8 +1,10 @@
 package http.getOpenWeather;
 
+import com.google.gson.Gson;
 import http.consts.HttpConnectionConstants;
 import logger.FileConsoleLogger;
 import logger.WeatherLogger;
+import weatherdata.dataobject.CurrentWeather;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,7 +16,21 @@ public class OpenWeatherDataGetter {
 
     private static final FileConsoleLogger LOGGER = WeatherLogger.createWeatherLogger();
 
-    public static String getResponseString () {
+    public CurrentWeather getCurrentWeatherObject () {
+        try {
+            String json = getCurrentWeatherStringJsonFromOpenWeather();
+            if (json == null) {
+                throw new ConnectionFailedException("connection to open weather failed");
+            }
+            Gson gson = new Gson();
+            return gson.fromJson(json, CurrentWeather.class);
+        } catch (ConnectionFailedException e) {
+            LOGGER.error(e.getMessage());
+            return null;
+        }
+    }
+
+    private String getCurrentWeatherStringJsonFromOpenWeather() {
 
         StringBuilder builder = new StringBuilder();
         try {

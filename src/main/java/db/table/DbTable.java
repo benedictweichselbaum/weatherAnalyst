@@ -1,9 +1,13 @@
 package db.table;
 
+import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 public class DbTable {
+
     List<String> columns;
     List<List<String>> tuples;
 

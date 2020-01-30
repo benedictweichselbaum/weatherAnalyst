@@ -13,6 +13,14 @@ public class PostgreSQLJDBC implements DatabaseConnection {
 
     private static final FileConsoleLogger LOGGER = WeatherLogger.createWeatherLogger();
 
+    public PostgreSQLJDBC () {
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            LOGGER.error(e.getMessage());
+        }
+    }
+
     @Override
     public void makeUpdate(String sqlStatement, boolean withCommit) {
         List<String> sqlStmt = Collections.singletonList(sqlStatement);
@@ -23,6 +31,7 @@ public class PostgreSQLJDBC implements DatabaseConnection {
     public void makeMultiUpdates(List<String> sqlStatements, boolean withCommit) {
         try (Connection connection = this.getDbConnection();
              Statement statement = connection.createStatement()) {
+            connection.setAutoCommit(false);
             for (String sqlStatement : sqlStatements) {
                 statement.executeUpdate(sqlStatement);
                 LOGGER.info("Executed update: " + sqlStatement);

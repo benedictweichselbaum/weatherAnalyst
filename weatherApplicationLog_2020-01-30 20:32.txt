@@ -1,0 +1,1 @@
+2020-01-30 20:32 Executed update: INSERT INTO public.currentweather(tempCurrent, tempmax, tempmin, humidity, description) VALUES(278.49,null,null,75,'broken clouds');2020-01-30 20:32 Cannot commit when autoCommit is enabled.
