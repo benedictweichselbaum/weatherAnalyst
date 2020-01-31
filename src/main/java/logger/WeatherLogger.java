@@ -18,7 +18,8 @@ public final class WeatherLogger implements FileConsoleLogger {
     public WeatherLogger () {
         this.logger = Logger.getLogger("weatherLogger");
         try {
-            String fileName = FILE_NAME + getCurrentDate() + FILE_FORMAT_ENDING;
+            String fileName = "./logs/" + FILE_NAME + getCurrentDate() +
+                    FILE_FORMAT_ENDING;
             this.fileWriter = new FileWriter(fileName);
         } catch (IOException e) {
             this.error("Logger create failed!");
@@ -28,27 +29,31 @@ public final class WeatherLogger implements FileConsoleLogger {
 
     @Override
     public void info(String message) {
-        String msg = getCurrentDate() + " " + message;
+        String msg = getMessage(message);
         logger.log(Level.INFO, msg);
         writeIntoFile(msg);
     }
 
     @Override
     public void warn(String message) {
-        String msg = getCurrentDate() + " " + message;
+        String msg = getMessage(message);
         logger.log(Level.WARNING, msg);
         writeIntoFile(msg);
     }
 
+    private String getMessage(String message) {
+        return getCurrentDate() + " " + message + "\n";
+    }
+
     @Override
     public void error(String error) {
-        String msg = getCurrentDate() + " " + error;
+        String msg = getMessage(error);
         logger.log(Level.SEVERE, msg);
         writeIntoFile(msg);
     }
 
     private String getCurrentDate () {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime today = LocalDateTime.now();
         return formatter.format(today);
     }
