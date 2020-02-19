@@ -6,7 +6,8 @@ import weatherdata.dataDbWriting.DbCurrentWeatherDataWriter;
 
 public class CurrentWeatherDataThread implements Runnable{
 
-    private static final FileConsoleLogger LOGGER = WeatherLogger.createWeatherLogger();
+    private static final FileConsoleLogger LOGGER = WeatherLogger.getWeatherLogger();
+    private int numberOfRuns = 5;
 
     @Override
     public void run() {
@@ -15,8 +16,10 @@ public class CurrentWeatherDataThread implements Runnable{
         try {
             Thread.sleep(15000);
         } catch (InterruptedException e) {
-            LOGGER.error("error in CurrentWeatherDataThread: sleep failed");
-        } finally {
+            LOGGER.error(e.getMessage());
+        }
+        numberOfRuns--;
+        if (numberOfRuns >= 1) {
             run();
         }
     }

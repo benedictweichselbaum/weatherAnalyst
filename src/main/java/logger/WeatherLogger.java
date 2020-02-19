@@ -1,9 +1,7 @@
 package logger;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
@@ -11,13 +9,15 @@ import java.util.logging.Logger;
 
 public final class WeatherLogger implements FileConsoleLogger {
 
+    private static WeatherLogger loggerInstance;
+
     private static final String FILE_NAME = "/home/bweichselbaum/Schreibtisch/logs/weatherApplicationLog_";
     private static final String FILE_FORMAT_ENDING = ".txt";
 
     private Logger logger;
     private FileWriter fileWriter;
 
-    public WeatherLogger () {
+    private WeatherLogger () {
         this.logger = Logger.getLogger("weatherLogger");
         try {
             String fileName = FILE_NAME + getCurrentDate() +
@@ -60,7 +60,7 @@ public final class WeatherLogger implements FileConsoleLogger {
         return formatter.format(today);
     }
 
-    private void writeIntoFile (String msg) {
+    private synchronized void writeIntoFile (String msg) {
         try {
             fileWriter.write(msg);
             fileWriter.flush();
@@ -69,7 +69,10 @@ public final class WeatherLogger implements FileConsoleLogger {
         }
     }
 
-    public static WeatherLogger createWeatherLogger () {
-        return new WeatherLogger();
+    public static WeatherLogger getWeatherLogger () {
+        if (WeatherLogger.loggerInstance == null) {
+            WeatherLogger.loggerInstance = new WeatherLogger();
+        }
+        return WeatherLogger.loggerInstance;
     }
 }

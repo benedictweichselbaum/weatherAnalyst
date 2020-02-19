@@ -14,7 +14,7 @@ import java.net.URL;
 
 public class OpenWeatherDataGetter {
 
-    private static final FileConsoleLogger LOGGER = WeatherLogger.createWeatherLogger();
+    private static final FileConsoleLogger LOGGER = WeatherLogger.getWeatherLogger();
 
     public CurrentWeather getCurrentWeatherObject () {
         try {

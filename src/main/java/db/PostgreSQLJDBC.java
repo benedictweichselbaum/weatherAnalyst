@@ -11,7 +11,7 @@ import java.util.List;
 
 public class PostgreSQLJDBC implements DatabaseConnection {
 
-    private static final FileConsoleLogger LOGGER = WeatherLogger.createWeatherLogger();
+    private static final FileConsoleLogger LOGGER = WeatherLogger.getWeatherLogger();
 
     public PostgreSQLJDBC () {
         try {

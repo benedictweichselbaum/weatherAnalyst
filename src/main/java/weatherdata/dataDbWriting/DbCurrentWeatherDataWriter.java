@@ -12,7 +12,7 @@ import java.util.Date;
 
 public class DbCurrentWeatherDataWriter {
 
-    public static final FileConsoleLogger LOGGER = WeatherLogger.createWeatherLogger();
+    public static final FileConsoleLogger LOGGER = WeatherLogger.getWeatherLogger();
     public static final String DATE_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
     private final OpenWeatherDataGetter openWeatherDataGetter = new OpenWeatherDataGetter();
