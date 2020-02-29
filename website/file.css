@@ -1,3 +1,16 @@
 #header {
     margin-bottom: 2rem;
 }
+
+#infoRow {
+    display: flex;
+}
+
+#description {
+    margin-top: 1.5rem;
+}
+
+.descriptionCol {
+    flex: 1;
+    padding: 1em;
+}

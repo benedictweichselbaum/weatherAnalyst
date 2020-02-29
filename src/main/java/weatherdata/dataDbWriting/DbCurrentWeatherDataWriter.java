@@ -2,6 +2,7 @@ package weatherdata.dataDbWriting;
 
 import db.DatabaseConnection;
 import db.PostgreSQLJDBC;
+import html.HtmlWeatherManipulator;
 import http.getOpenWeather.OpenWeatherDataGetter;
 import logger.FileConsoleLogger;
 import logger.WeatherLogger;
@@ -24,6 +25,10 @@ public class DbCurrentWeatherDataWriter {
         CurrentWeather currentWeather = openWeatherDataGetter.getCurrentWeatherObject();
         LOGGER.info("transform into value object");
         ValueObject valueObject = createCorrespondingDbValueObject(currentWeather);
+        LOGGER.info("update website");
+        HtmlWeatherManipulator.manipulateHtmlWithCurrentWeatherData(
+                "/home/bweichselbaum/Schreibtisch/website/base.html",
+                valueObject);
         LOGGER.info("make update in data base");
         databaseConnection.makeUpdate(createSqlStatementForValueInsertion(valueObject), true);
     }
