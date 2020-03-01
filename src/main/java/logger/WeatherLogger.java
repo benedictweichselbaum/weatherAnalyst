@@ -1,5 +1,7 @@
 package logger;
 
+import pathConstants.GlobalFilePathConstants;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -11,7 +13,6 @@ public final class WeatherLogger implements FileConsoleLogger {
 
     private static WeatherLogger loggerInstance;
 
-    private static final String FILE_NAME = "/home/bweichselbaum/Schreibtisch/logs/weatherApplicationLog_";
     private static final String FILE_FORMAT_ENDING = ".txt";
 
     private Logger logger;
@@ -20,7 +21,7 @@ public final class WeatherLogger implements FileConsoleLogger {
     private WeatherLogger () {
         this.logger = Logger.getLogger("weatherLogger");
         try {
-            String fileName = FILE_NAME + getCurrentDate() +
+            String fileName = GlobalFilePathConstants.BASE_PATH_LOGS_NAME + getCurrentDate() +
                     FILE_FORMAT_ENDING;
             this.fileWriter = new FileWriter(fileName);
         } catch (IOException e) {

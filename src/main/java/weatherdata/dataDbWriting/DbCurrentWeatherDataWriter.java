@@ -6,6 +6,7 @@ import html.HtmlWeatherManipulator;
 import http.getOpenWeather.OpenWeatherDataGetter;
 import logger.FileConsoleLogger;
 import logger.WeatherLogger;
+import pathConstants.GlobalFilePathConstants;
 import weatherdata.dataobject.CurrentWeather;
 
 import java.text.SimpleDateFormat;
@@ -27,7 +28,7 @@ public class DbCurrentWeatherDataWriter {
         ValueObject valueObject = createCorrespondingDbValueObject(currentWeather);
         LOGGER.info("update website");
         HtmlWeatherManipulator.manipulateHtmlWithCurrentWeatherData(
-                "/home/bweichselbaum/Schreibtisch/website/base.html",
+                  GlobalFilePathConstants.BASE_PATH_DEFAULT_HTML + "/base.html",
                 valueObject);
         LOGGER.info("make update in data base");
         databaseConnection.makeUpdate(createSqlStatementForValueInsertion(valueObject), true);
